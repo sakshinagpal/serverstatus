@@ -1,0 +1,5 @@
+Element_name,Large,Medium_landscape,Medium_portrait,Small
+baseurl,http://qa3.myngconnect.com/,http://qa1.myngconnect.com/,http://s-www.myngconnect.com,
+usertype,educator,educator,educator,student
+username,testteacher2@wcg.com,testteacher2@wcg.com,testteacher2@wcg.com,student@texas
+password,password,password,password,password

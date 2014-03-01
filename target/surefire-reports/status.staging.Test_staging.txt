@@ -1,0 +1,48 @@
+-------------------------------------------------------------------------------
+Test set: status.staging.Test_staging
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.004 sec <<< FAILURE!
+initializationError(status.staging.Test_staging)  Time elapsed: 0 sec  <<< ERROR!
+java.lang.TypeNotPresentException: Type com.googlecode.junit.ext.JunitExtRunner not present
+	at sun.reflect.annotation.TypeNotPresentExceptionProxy.generateException(Unknown Source)
+	at sun.reflect.annotation.AnnotationInvocationHandler.invoke(Unknown Source)
+	at com.sun.proxy.$Proxy4.value(Unknown Source)
+	at org.junit.internal.builders.AnnotatedBuilder.runnerForClass(AnnotatedBuilder.java:21)
+	at org.junit.runners.model.RunnerBuilder.safeRunnerForClass(RunnerBuilder.java:59)
+	at org.junit.internal.builders.AllDefaultPossibilitiesBuilder.runnerForClass(AllDefaultPossibilitiesBuilder.java:26)
+	at org.junit.runners.model.RunnerBuilder.safeRunnerForClass(RunnerBuilder.java:59)
+	at org.junit.internal.requests.ClassRequest.getRunner(ClassRequest.java:26)
+	at org.apache.maven.surefire.junit4.JUnit4TestSet.execute(JUnit4TestSet.java:51)
+	at org.apache.maven.surefire.suite.AbstractDirectoryTestSuite.executeTestSet(AbstractDirectoryTestSuite.java:115)
+	at org.apache.maven.surefire.suite.AbstractDirectoryTestSuite.execute(AbstractDirectoryTestSuite.java:102)
+	at org.apache.maven.surefire.Surefire.run(Surefire.java:180)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.apache.maven.surefire.booter.SurefireBooter.runSuitesInProcess(SurefireBooter.java:350)
+	at org.apache.maven.surefire.booter.SurefireBooter.main(SurefireBooter.java:1021)
+Caused by: java.lang.ClassNotFoundException: com.googlecode.junit.ext.JunitExtRunner
+	at java.net.URLClassLoader$1.run(Unknown Source)
+	at java.net.URLClassLoader$1.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.net.URLClassLoader.findClass(Unknown Source)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Unknown Source)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Unknown Source)
+	at sun.reflect.generics.factory.CoreReflectionFactory.makeNamedType(Unknown Source)
+	at sun.reflect.generics.visitor.Reifier.visitClassTypeSignature(Unknown Source)
+	at sun.reflect.generics.tree.ClassTypeSignature.accept(Unknown Source)
+	at sun.reflect.annotation.AnnotationParser.parseSig(Unknown Source)
+	at sun.reflect.annotation.AnnotationParser.parseClassValue(Unknown Source)
+	at sun.reflect.annotation.AnnotationParser.parseMemberValue(Unknown Source)
+	at sun.reflect.annotation.AnnotationParser.parseAnnotation(Unknown Source)
+	at sun.reflect.annotation.AnnotationParser.parseAnnotations2(Unknown Source)
+	at sun.reflect.annotation.AnnotationParser.parseAnnotations(Unknown Source)
+	at java.lang.Class.initAnnotationsIfNecessary(Unknown Source)
+	at java.lang.Class.getAnnotation(Unknown Source)
+	at org.junit.internal.builders.IgnoredBuilder.runnerForClass(IgnoredBuilder.java:10)
+	... 14 more
+

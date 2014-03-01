@@ -49,7 +49,7 @@
     <outputDirectory>target/classes</outputDirectory>
     <sourceDirectory>src</sourceDirectory>
      <testOutputDirectory>target/test-classes</testOutputDirectory>
-    <testSourceDirectory>${project.basedir}/src/test/java/WCG/General</testSourceDirectory>
+    <testSourceDirectory>${project.basedir}/src/test/java/myngconnect_server_status</testSourceDirectory>
     <resources>
       <resource>
         <directory>src/test/config</directory>

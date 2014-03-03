@@ -8,7 +8,7 @@ import com.compro.automation.utils.CSVHandler;
 public class Home {
 	CSVHandler login_details = null;
     public void login(RemoteWebDriver driver) throws Exception {
-        String baseurl = "http://qa3.myngconnect.com/";
+        String baseurl = "http://s-www.myngconnect.com";
         synchronized (driver){driver.wait(5000);}
         driver.get(baseurl + "/login/teacher/login.spr");
 	    driver.findElement(By.id("j_username")).clear();

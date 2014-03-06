@@ -35,7 +35,7 @@ public class Test_Existing_Credentials_Check_QA1{
 		TestRun.stop(driver);
 	}
 //----------------------------------------------------------------------------------------------------
-@Test
+@Ignore
 public void TestExistingCredentials()throws Exception{
 System.out.println("In @Test");
 String flag="false";

@@ -59,7 +59,7 @@ System.out.println("End of @test");
 }
 
 //Compare Base Screenshot
-@Test
+@Ignore 
 public void Test_Health_1_CompareScreenshot()throws Exception{
 System.out.println("Screenshot Compare");
 Health_check h = new Health_check();
@@ -75,12 +75,7 @@ WebElement ele = driver.findElement(By.xpath("/html/body/div/div[2]/div/div/tabl
 String result=null;
 //Make server CSV driven
 //driver.manage().timeouts().pageLoadTimeout(30,TimeUnit.SECONDS);
-/*
-CSVHandler general = null;
-general = new CSVHandler("src/test/resources/login_health_check_qa3.csv");
-String wowza = general.getElementXpath("wowza");
-driver.findElement(By.xpath(wowza)).getText();
-*/
+
 Screenshot.takeElementScreenshot(driver, ele, ele.getLocation(), "actual_health_"+baseurl0_name);
 result = Screenshot.compareScreenshots("actual_health_"+baseurl0_name, "base_health_"+baseurl0_name);
 if(result.equals("True"))

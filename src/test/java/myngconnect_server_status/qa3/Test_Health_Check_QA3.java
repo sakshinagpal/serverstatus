@@ -66,6 +66,11 @@ Health_check h = new Health_check();
 h.health_login(driver);
 CSVHandler login_details = new CSVHandler("src/test/resources/login_health_check_qa3.csv");
 String baseurl0_name = login_details.getElementXpath("baseurl0_name");
+synchronized (driver) {
+	driver.wait(15000);
+}
+
+
 WebElement ele = driver.findElement(By.xpath("/html/body/div/div[2]/div/div/table/tbody/tr[2]/td[2]/div"));
 String result=null;
 //Make server CSV driven

@@ -71,10 +71,12 @@ String result=null;
 //Make server CSV driven
 //driver.manage().timeouts().pageLoadTimeout(30,TimeUnit.SECONDS);
 //synchronized (driver){driver.wait(10000);}
+/*
 CSVHandler general = null;
 general = new CSVHandler("src/test/resources/login_health_check_staging.csv");
 String wowza = general.getElementXpath("wowza");
 driver.findElement(By.xpath(wowza)).getText();
+*/
 Screenshot.takeElementScreenshot(driver, ele, ele.getLocation(), "actual_health_"+baseurl0_name);
 result = Screenshot.compareScreenshots("actual_health_"+baseurl0_name, "base_health_"+baseurl0_name);
 if(result.equals("True"))

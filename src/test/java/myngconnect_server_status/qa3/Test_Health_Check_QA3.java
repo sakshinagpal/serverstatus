@@ -1,6 +1,8 @@
 package myngconnect_server_status.qa3;
 
+import java.text.SimpleDateFormat;
 import java.util.Collection;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 import org.junit.*;
 import org.junit.runner.RunWith;
@@ -59,24 +61,39 @@ System.out.println("End of @test");
 }
 
 //Compare Base Screenshot
-@Ignore 
+@Test
 public void Test_Health_1_CompareScreenshot()throws Exception{
 System.out.println("Screenshot Compare");
 Health_check h = new Health_check();
 h.health_login(driver);
 CSVHandler login_details = new CSVHandler("src/test/resources/login_health_check_qa3.csv");
 String baseurl0_name = login_details.getElementXpath("baseurl0_name");
-synchronized (driver) {
-	driver.wait(15000);
-}
 
-
+Date date = new Date();
+SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY");
+System.out.println(sdf.format(date));
+String time;
+String str = sdf.format(date);
+System.out.println("STR:"+str);
+time = str.substring(0,2);
+time +="-"+ str.substring(3,5);
+System.out.println("TIME:"+time);
+synchronized (driver) {driver.wait(15000);}
 WebElement ele = driver.findElement(By.xpath("/html/body/div/div[2]/div/div/table/tbody/tr[2]/td[2]/div"));
 String result=null;
-//Make server CSV driven
-//driver.manage().timeouts().pageLoadTimeout(30,TimeUnit.SECONDS);
 
-Screenshot.takeElementScreenshot(driver, ele, ele.getLocation(), "actual_health_"+baseurl0_name);
+//Make server CSV driven
+driver.manage().timeouts().pageLoadTimeout(30,TimeUnit.SECONDS);
+synchronized (driver){driver.wait(10000);}
+
+CSVHandler general = null;
+general = new CSVHandler("src/test/resources/login_health_check_qa3.csv");
+String wowza = general.getElementXpath("wowza");
+driver.findElement(By.xpath(wowza)).getText();
+
+Screenshot.takeElementScreenshot(driver, ele, ele.getLocation(), time + "_"+"actual_health_"+baseurl0_name);
+
+/*
 result = Screenshot.compareScreenshots("actual_health_"+baseurl0_name, "base_health_"+baseurl0_name);
 if(result.equals("True"))
 {
@@ -84,6 +101,7 @@ if(result.equals("True"))
 }
 System.out.println(result);
 TestAssertion.assertionEquals(driver, "true", global_check);
+*/
 }
 
 //Check Screenshots

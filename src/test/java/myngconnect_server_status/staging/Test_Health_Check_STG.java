@@ -1,5 +1,6 @@
 package myngconnect_server_status.staging;
 
+import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.concurrent.TimeUnit;
 import org.junit.*;
@@ -12,6 +13,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import com.compro.automation.core.*;
 import com.compro.automation.utils.CSVHandler;
 import com.compro.automation.utils.Screenshot;
+import java.util.Date;
 
 class global
 {
@@ -47,7 +49,7 @@ class global
 //Take Base Screenshot
 @Ignore 
 public void Test_Health_0_BaseScreenShot()throws Exception{
-System.out.println("In @Test");
+System.out.println("In @Ignore");
 Health_check h = new Health_check();
 CSVHandler login_details = new CSVHandler("src/test/resources/login_health_check_staging.csv");
 String baseurl0_name = login_details.getElementXpath("baseurl0_name");
@@ -55,28 +57,43 @@ h.health_login(driver);
 WebElement ele = driver.findElement(By.xpath("/html/body/div/div[2]/div/div/table/tbody/tr[2]/td[2]/div"));
 //Make server CSV driven
 Screenshot.takeElementScreenshot(driver, ele, ele.getLocation(), "base_health_"+baseurl0_name);
-System.out.println("End of @test");
+System.out.println("End of @Ignore");
 }
 
 //Compare Base Screenshot
-@Ignore 
+@Test
 public void Test_Health_1_CompareScreenshot()throws Exception{
 System.out.println("Screenshot Compare");
 Health_check h = new Health_check();
 h.health_login(driver);
+
 CSVHandler login_details = new CSVHandler("src/test/resources/login_health_check_staging.csv");
 String baseurl0_name = login_details.getElementXpath("baseurl0_name");
-
-synchronized (driver) {
-	driver.wait(15000);
-}
+Date date = new Date();
+SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY");
+System.out.println(sdf.format(date));
+String time;
+String str = sdf.format(date);
+System.out.println("STR:"+str);
+time = str.substring(0,2);
+time +="-"+ str.substring(3,5);
+System.out.println("TIME:"+time);
+synchronized (driver) {driver.wait(15000);}
 WebElement ele = driver.findElement(By.xpath("/html/body/div/div[2]/div/div/table/tbody/tr[2]/td[2]/div"));
 String result=null;
-//Make server CSV driven
-//driver.manage().timeouts().pageLoadTimeout(30,TimeUnit.SECONDS);
-//synchronized (driver){driver.wait(10000);}
 
-Screenshot.takeElementScreenshot(driver, ele, ele.getLocation(), "actual_health_"+baseurl0_name);
+//Make server CSV driven
+driver.manage().timeouts().pageLoadTimeout(30,TimeUnit.SECONDS);
+synchronized (driver){driver.wait(10000);}
+
+CSVHandler general = null;
+general = new CSVHandler("src/test/resources/login_health_check_staging.csv");
+String wowza = general.getElementXpath("wowza");
+driver.findElement(By.xpath(wowza)).getText();
+
+Screenshot.takeElementScreenshot(driver, ele, ele.getLocation(), time + "_"+"actual_health_"+baseurl0_name);
+
+/*
 result = Screenshot.compareScreenshots("actual_health_"+baseurl0_name, "base_health_"+baseurl0_name);
 if(result.equals("True"))
 {
@@ -84,6 +101,7 @@ if(result.equals("True"))
 }
 System.out.println(result);
 TestAssertion.assertionEquals(driver, "true", global_check);
+*/
 }
 
 @Test
@@ -130,7 +148,7 @@ TestAssertion.assertionEquals(driver, "true", check);
 }
 }
 
-@Test 
+@Test
 public void TestHealth_4_SRI2()throws Exception{
 System.out.println(global_check);
 if(!global_check.equals("true"))
@@ -207,7 +225,7 @@ else if((server.equals("staging")))
 }
 }
 
-@Test 
+@Test
 public void TestHealth_8_AuthorizationAPI()throws Exception{
 System.out.println(global_check);
 if(!global_check.equals("true"))
@@ -229,7 +247,7 @@ TestAssertion.assertionEquals(driver, "true", check);
 }
 }
 
-@Test 
+@Test
 public void TestHealth_9_Databse()throws Exception{
 System.out.println(global_check);
 if(!global_check.equals("true"))
@@ -251,7 +269,7 @@ TestAssertion.assertionEquals(driver, "true", check);
 }
 }
 
-@Test 
+@Test
 public void TestHealth_10_Webassets()throws Exception{
 System.out.println(global_check);
 if(!global_check.equals("true"))

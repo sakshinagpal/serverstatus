@@ -172,8 +172,6 @@ TestAssertion.assertionEquals(driver, "true", global_check);
 
 @Test
 public void TestHealth_2_ContentRepository()throws Exception{
-
-	System.out.println("HERE");
 TestAssertion.assertionEquals(driver, "true", content_repository_check);
 }
 
